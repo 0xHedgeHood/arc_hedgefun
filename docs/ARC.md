@@ -90,6 +90,17 @@ Every script refuses a chain other than 5042. Run each with `arc-forge script ..
 
 The scripts write `deploy/arc-v2-core.candidate.json` (or `.dryrun.json`). Like the 4663 candidate, it is unverified until the receipts and `VerifyArcCore` agree.
 
+`script/arc/deploy-arc.sh` runs steps 2 to 6 in that order, with the deploying key as the factory owner until the hand-over, and resumes from where a stopped run left off. Rehearse it first on a local fork, where the same nonces give the same addresses:
+
+```sh
+arc-anvil --network arc --fork-url https://rpc.mainnet.arc.io --auto-impersonate --port 8546 --chain-id 5042
+ARC_RPC=http://127.0.0.1:8546 AUTH=--unlocked DEPLOYER=0x… SAFE=0x… script/arc/deploy-arc.sh
+```
+
+On 2026-10-08 the rehearsal took 36 transactions and 1.64 USDC of gas. Delete `deploy/arc-v2-core.candidate.json` and `broadcast/*/5042` before the real run, which is the same command with `ARC_RPC=https://rpc.mainnet.arc.io AUTH="--account deployer"`. The Safe then sends `acceptOwnership()` (`0x79ba5097`) and `setPublicLaunch(true)` (`0x3d1a7ae3` followed by the word 1) to the factory.
+
+`LaunchArcToken` launches a cirBTC token from the broadcasting wallet, and `BuyArcToken` buys one with USDC. Send the buy in a later block: in a launch's first three seconds the opening snipe tax is up to 99%.
+
 ## WETH
 
 `ArcAssets` carries WETH with no pool, so `ListArcCrypto` refuses it. Arc's WETH/USDC depth is in an Aerodrome Slipstream pool (`0x6F302dECb49fB30B2D2c609BDD16e04e7Dd096FC`, about $880,000). The core cannot trade there: Slipstream's `getPool` takes a tick spacing, and its `slot0` returns six words where Uniswap V3 returns seven. The Uniswap V3 WETH/USDC pools held about $1,200.
