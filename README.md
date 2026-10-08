@@ -4,7 +4,18 @@ Hedgefun is a token launchpad where every token owns a treasury. A creator launc
 
 The same contracts run on Robinhood Chain (4663) with tokenized stocks. This repository is the Arc (5042) port, with cirBTC as the first underlying asset and USDC as gas, quote and launch fee.
 
-Status: contracts, deployment scripts and Arc mainnet fork tests. The Arc deployment follows [docs/ARC.md](docs/ARC.md).
+Status: live on Arc mainnet since 2026-10-08 at https://arc.hedgefun.trade. The core is owned by a Safe, and public launch is open. Deployment steps are in [docs/ARC.md](docs/ARC.md).
+
+| Contract | Arc mainnet (5042) |
+| --- | --- |
+| Factory (`HedgeFunV2ArcFactory`) | `0x7BbaAb5d1426650FaaAEB0214D5a045A80FD2621` |
+| Trade router | `0xD86745C6e81D4095A47979267267c2bf41fBFC46` |
+| Hook | `0xb5bAbc5609de876D56662d066a0B5f63eF90a8CC` |
+| Treasury registry | `0x093CD301Ce1AdEEdd9bC3814f9c00E42Ba603BeD` |
+| Curve deployer (`ArcCurveDeployer`) | `0xCF6225669B65E779BaCd86465E9a240ac786B5D3` |
+| cirBTC oracle (`CryptoPriceOracle`) | `0xf9d49B6b88C5C6b7Ac1424e83DcB41C41674fAf9` |
+
+The deployment record is [deploy/arc-v2-core.candidate.json](deploy/arc-v2-core.candidate.json). The Safe's opening batch is [deploy/safe-arc-accept-and-open.json](deploy/safe-arc-accept-and-open.json).
 
 ## How a launch works on Arc
 

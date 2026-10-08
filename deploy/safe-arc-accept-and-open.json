@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "chainId": "5042",
+  "createdAt": 0,
+  "meta": {
+    "name": "Hedgefun V2 on Arc: take the factory and open launch",
+    "description": "acceptOwnership() on the Arc V2 factory, which the deployer offered to this Safe; then setPublicLaunch(true). The registry and the upgrade controller follow the factory owner.",
+    "txBuilderVersion": "1.17.0",
+    "createdFromSafeAddress": "0x2910117dd2cB431173Ae9Fb6eAF30726321d1693",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x7BbaAb5d1426650FaaAEB0214D5a045A80FD2621",
+      "value": "0",
+      "data": "0x79ba5097",
+      "contractMethod": null,
+      "contractInputsValues": null
+    },
+    {
+      "to": "0x7BbaAb5d1426650FaaAEB0214D5a045A80FD2621",
+      "value": "0",
+      "data": "0x3d1a7ae30000000000000000000000000000000000000000000000000000000000000001",
+      "contractMethod": null,
+      "contractInputsValues": null
+    }
+  ]
+}
